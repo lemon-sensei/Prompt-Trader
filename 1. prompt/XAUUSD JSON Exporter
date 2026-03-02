@@ -1,0 +1,238 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️ JSON OUTPUT CONFIGURATION — XAUUSD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+INSTRUCTION:
+After generating the Trade Analysis Report for XAUUSD,
+ALSO output the complete analysis as a structured JSON object
+using the schema below. Wrap the JSON in a code block: ```json ... ```
+
+All values must reflect the EXACT data from the report.
+Do NOT use placeholder values — fill every field with actual analysis data.
+Use null only when a field is genuinely not applicable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+JSON SCHEMA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+```json
+{
+  "report_metadata": {
+    "asset": "XAUUSD",
+    "date": "DD MMM YYYY",
+    "time_utc": "HH:MM",
+    "session": "Asian | London | London-NY Overlap | New York",
+    "language": "Thai"
+  },
+  "news_risk": {
+    "level": "High | Medium | None",
+    "events": [
+      {
+        "name": "Event name or null",
+        "time_utc": "HH:MM or null",
+        "impact": "Description or null"
+      }
+    ],
+    "avoid_hours": ["HH:MM-HH:MM UTC"]
+  },
+  "execution_plan": {
+    "bias": "LONG | SHORT | WAIT",
+    "setup_type": "Div+Pattern | Pattern Only | Div Only | Fractal Breakout | Liq Sweep+Rejection",
+    "confidence": {
+      "stars": "⭐⭐⭐ | ⭐⭐ | ⭐",
+      "tf_aligned": "X/6",
+      "modifiers": ["+0.5 reason", "-0.5 reason"]
+    },
+    "scaling_plan": "Option A | Option B | Option C",
+    "scaling_reason": "Reason",
+    "entry_zone": {
+      "price": 0.00,
+      "level_type": "OB | FVG | EMA50 | EMA200 | Fractal | Round Number"
+    },
+    "entry_2": {
+      "price": null,
+      "level_type": null
+    },
+    "stop_loss": {
+      "price": 0.00,
+      "reason": "Description"
+    },
+    "take_profit": {
+      "tp1": { "price": 0.00, "rr": "1:2", "action": "Close 40%, SL to breakeven" },
+      "tp2": { "price": 0.00, "rr": "1:3", "action": "Close 40%, trail SL to TP1" },
+      "tp3": { "price": null, "rr": "1:5+", "action": "Close 20%, trail SL to TP2" }
+    },
+    "rr_ratio": "X:X",
+    "position_size": {
+      "lots": 0.00,
+      "risk_amount": 30,
+      "sl_distance_pips": 0.0
+    },
+    "invalidation": "Condition that cancels the setup"
+  },
+  "risk_notes": [
+    "Warning 1",
+    "Warning 2"
+  ],
+  "pre_trade_checklist": {
+    "regime_identified": true,
+    "no_news_30min": true,
+    "session_active": true,
+    "tf_aligned_3_plus": true,
+    "rr_minimum_met": true,
+    "pattern_validated": true,
+    "ob_fvg_marked": true,
+    "liquidity_noted": true,
+    "divergence_confirmed": true,
+    "macd_crosscheck": true,
+    "cot_etf_checked": true,
+    "macro_3_plus": true,
+    "scaling_plan_set": true,
+    "entry_confirmed_5m": true,
+    "position_size_calc": true,
+    "counter_trend_verified": null
+  },
+  "market_regime": {
+    "regime": "TRENDING | RANGING | VOLATILE",
+    "evidence": "Description",
+    "trading_rules": "Applicable rules summary"
+  },
+  "multi_tf_alignment": [
+    {
+      "tf": "1W",
+      "trend_ema200": "Bullish | Bearish",
+      "structure": "Description",
+      "ob_fvg_zone": null,
+      "candle_pattern": null,
+      "rsi_divergence": null,
+      "aligned": true
+    },
+    {
+      "tf": "1D",
+      "trend_ema200": "Bullish | Bearish",
+      "structure": "Description",
+      "ob_fvg_zone": null,
+      "candle_pattern": null,
+      "rsi_divergence": null,
+      "aligned": true
+    },
+    {
+      "tf": "4H",
+      "trend_ema200": "Bullish | Bearish",
+      "structure": "Description",
+      "ob_fvg_zone": "Price range or null",
+      "candle_pattern": "Pattern name or null",
+      "rsi_divergence": "Type + Grade or null",
+      "aligned": true
+    },
+    {
+      "tf": "1H",
+      "trend_ema200": "Bullish | Bearish",
+      "structure": "Description",
+      "ob_fvg_zone": "Price range or null",
+      "candle_pattern": "Pattern name or null",
+      "rsi_divergence": "Type + Grade or null",
+      "aligned": true
+    },
+    {
+      "tf": "15M",
+      "trend_ema200": "Bullish | Bearish",
+      "structure": "Description",
+      "ob_fvg_zone": "Price range or null",
+      "candle_pattern": "Pattern + Tier or null",
+      "rsi_divergence": "Type + Grade or null",
+      "aligned": true
+    },
+    {
+      "tf": "5M",
+      "trend_ema200": "Bullish | Bearish",
+      "structure": "Description",
+      "ob_fvg_zone": "Price range or null",
+      "candle_pattern": "Pattern + Tier or null",
+      "rsi_divergence": "Type + MACD confirm or null",
+      "aligned": true
+    }
+  ],
+  "smc": {
+    "order_blocks": [
+      {
+        "tf": "4H | 1H",
+        "type": "Bullish OB | Bearish OB",
+        "price_zone": "Low - High",
+        "mitigated": false,
+        "aligned_ema": true
+      }
+    ],
+    "fair_value_gaps": [
+      {
+        "tf": "4H | 1H",
+        "direction": "Bullish | Bearish",
+        "price_zone": "Low - High",
+        "filled": "Yes | No | Partial"
+      }
+    ],
+    "liquidity_zones": {
+      "buy_side_eqh": "Price level",
+      "sell_side_eql": "Price level",
+      "session_liquidity": "Previous session high/low",
+      "sweep_detected": "Description or null"
+    },
+    "bos_choch_status": "Description — direction + TF + price level"
+  },
+  "candlestick_pattern": {
+    "dominant_pattern": "Pattern name",
+    "timeframe": "TF",
+    "tier": 1,
+    "location": "At EMA50 | EMA200 | Fractal S/R | OB | FVG | Mid-range",
+    "body_wick_ratio": "Description",
+    "volume_context": "Above avg | Below avg | Neutral",
+    "verdict": "Strong | Moderate | Weak",
+    "verdict_reason": "Why"
+  },
+  "divergence": {
+    "signals": [
+      {
+        "oscillator": "RSI(14) | MACD",
+        "tf": "4H | 1H | 15M | 5M",
+        "price_action": "Higher High | Lower Low | etc.",
+        "oscillator_action": "Lower High | Higher Low | etc.",
+        "div_type": "Regular Bullish | Regular Bearish | Hidden Bullish | Hidden Bearish | Exaggerated",
+        "grade": "Strong | Moderate | Weak"
+      }
+    ],
+    "verdict": "Strongest signal description",
+    "alignment_check": "Aligns | Contradicts trade bias"
+  },
+  "cot_sentiment": {
+    "cot_net_positioning": "Description → Normal | Elevated | Extreme",
+    "cot_weekly_change": "Description → Interpretation",
+    "gold_etf_flows": "Description → Supports | Opposes bias",
+    "us_real_yield_trend": "Rising | Falling | Flat → Headwind | Tailwind",
+    "central_bank_buying": "Description → Support | Pressure",
+    "confidence_adj": "+0.5 | -0.5 | -1.0 | None — reason"
+  },
+  "macro_correlation": {
+    "assets": [
+      { "name": "DXY", "direction": "↑ | ↓ | Flat", "supports_bias": true },
+      { "name": "US10Y Real Yield (TIPS)", "direction": "↑ | ↓ | Flat", "supports_bias": true },
+      { "name": "VIX", "direction": "↑ | ↓ | Flat", "supports_bias": true },
+      { "name": "USD/JPY", "direction": "↑ | ↓ | Flat", "supports_bias": true },
+      { "name": "Silver (XAGUSD)", "direction": "↑ | ↓ | Flat", "supports_bias": true }
+    ],
+    "aligned_count": "X/5",
+    "action": "Proceed | Reduce size | Wait"
+  },
+  "confluence_summary": {
+    "regime": "Description",
+    "ema": "Description",
+    "smc": "Description",
+    "rsi": "Description",
+    "macd": "Description",
+    "pattern": "Description",
+    "volume": "Description",
+    "cot": "Description",
+    "macro": "Description",
+    "session": "Description"
+  }
+}
+```
