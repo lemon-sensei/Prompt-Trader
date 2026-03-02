@@ -1,0 +1,780 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️ CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ASSET           : [XAUUSD]
+REPORT LANG     : [Thai]
+SESSION         : [Auto]  ← detect from current UTC time
+MIN R:R         : [1:3]
+DEPOSIT         : [$3,000]
+RISK/TRADE      : [1% of capital]
+FRACTAL TYPE    : [Williams Fractals]
+
+INDICATORS
+
+- Green Line → EMA 50 (dynamic S/R)
+- Red Line → EMA 200 (trend filter)
+- Williams Fractals → swing highs/lows
+- RSI(14) + Volume → momentum & divergence confirmation
+- ATR(14) → SL/TP sizing
+- MACD(12,26,9) → divergence cross-check
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CANDLESTICK PATTERN LIBRARY (Priority Ranked)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TIER 1 — Reversal Patterns (Highest Weight, require S/R confluence)
+BULLISH : Hammer | Bullish Engulfing | Morning Star | Bullish Pin Bar
+Tweezer Bottom | Bullish Harami | Three White Soldiers
+BEARISH : Shooting Star | Bearish Engulfing | Evening Star | Bearish Pin Bar
+Tweezer Top | Bearish Harami | Three Black Crows
+
+TIER 2 — Continuation Patterns (Confirm trend momentum)
+BULLISH : Rising Three Methods | Bullish Marubozu | Gap Up + Hold
+BEARISH : Falling Three Methods | Bearish Marubozu | Gap Down + Hold
+
+TIER 3 — Indecision / Warning Patterns (Reduce confidence, do not trade alone)
+Doji (Standard / Dragonfly / Gravestone / Long-legged)
+Spinning Top | Inside Bar (IB) | Outside Bar (OB)
+
+PATTERN VALIDATION RULES
+✅ Pattern must form AT or NEAR a key level (EMA 50/200, fractal S/R, round number)
+✅ Confirmation candle must CLOSE — never enter on open candle
+✅ Wick-to-body ratio for Pin Bar: wick ≥ 2× body length
+✅ Engulfing: body of signal candle must fully engulf prior candle body
+✅ Volume on signal candle should be ≥ average (stronger signal)
+❌ Patterns in the middle of a range = lower reliability → mark as Tier 3
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DIVERGENCE DETECTION FRAMEWORK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PRIMARY OSCILLATOR : RSI (14)
+SECONDARY CHECK    : MACD Histogram
+
+DIVERGENCE TYPES & DEFINITIONS
+
+┌─────────────────────┬──────────────────────────────────┬──────────┐
+│ Type                │ Price Action vs Oscillator       │ Signal   │
+├─────────────────────┼──────────────────────────────────┼──────────┤
+│ Regular Bullish     │ Price: Lower Low                 │ 🟢 BUY   │
+│                     │ RSI  : Higher Low                │ Reversal │
+├─────────────────────┼──────────────────────────────────┼──────────┤
+│ Regular Bearish     │ Price: Higher High               │ 🔴 SELL  │
+│                     │ RSI  : Lower High                │ Reversal │
+├─────────────────────┼──────────────────────────────────┼──────────┤
+│ Hidden Bullish      │ Price: Higher Low                │ 🟢 BUY   │
+│                     │ RSI  : Lower Low                 │ Cont.    │
+├─────────────────────┼──────────────────────────────────┼──────────┤
+│ Hidden Bearish      │ Price: Lower High                │ 🔴 SELL  │
+│                     │ RSI  : Higher High               │ Cont.    │
+├─────────────────────┼──────────────────────────────────┼──────────┤
+│ Exaggerated Bull.   │ Price: Double Bottom (~equal)    │ 🟡 WATCH │
+│                     │ RSI  : Higher Low (clear slope)  │ Weak     │
+├─────────────────────┼──────────────────────────────────┼──────────┤
+│ Exaggerated Bear.   │ Price: Double Top (~equal)       │ 🟡 WATCH │
+│                     │ RSI  : Lower High (clear slope)  │ Weak     │
+└─────────────────────┴──────────────────────────────────┴──────────┘
+
+DIVERGENCE GRADING RULES
+🔴 Strong  : Divergence on 1H or 4H + confirmed on 15M/5M simultaneously
+🟡 Moderate: Divergence on 15M only, or MACD confirms but RSI is borderline
+🟢 Weak    : Divergence on 5M only → use as timing trigger, not standalone signal
+
+DIVERGENCE VALIDATION CHECKLIST
+✅ Both pivot points (swing high/low) must be CONFIRMED candles (not forming)
+✅ RSI swing must be clearly visible — not noise (< 2 RSI points apart = invalid)
+✅ Divergence must align with trade bias (Regular Div = reversal, Hidden Div = continuation)
+✅ Cross-check: Does MACD histogram show same divergence pattern?
+✅ Best divergence zone: RSI in oversold (<30) for bullish | overbought (>70) for bearish
+❌ Divergence in RSI neutral zone (40–60) = lower reliability → reduce confidence by 1 star
+❌ Do NOT trade divergence against higher-TF trend without multi-TF alignment
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MARKET STRUCTURE CONTEXT (Smart Money Concepts)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STRUCTURE DEFINITIONS
+
+- Break of Structure (BOS) : Price closes beyond the most recent swing high (bullish) or swing low (bearish) → trend continuation signal
+- Change of Character (CHoCH): Price breaks the opposing swing level → first sign of trend reversal
+- Order Block (OB) : The last opposing candle before an impulsive move; treat as institutional S/R
+• Bullish OB = last bearish candle before strong rally (demand zone)
+• Bearish OB = last bullish candle before strong drop (supply zone)
+- Fair Value Gap (FVG) : 3-candle imbalance where middle candle body doesn't overlap with candle 1 & 3 wicks → price tends to return and fill
+
+OB & FVG IDENTIFICATION RULES
+✅ Valid OB must precede an impulsive move that causes BOS or CHoCH
+✅ OB zone = full candle range (high to low of the identified candle)
+✅ FVG must be created by an impulsive move (3+ consecutive directional candles)
+✅ Unmitigated OB/FVG = price has NOT returned to the zone yet → highest probability
+✅ Prioritize OBs that align with EMA 50/200 dynamic S/R
+❌ OBs in the middle of a range with no impulsive follow-through = invalid
+❌ FVGs already filled/mitigated = no longer active
+
+TIMEFRAME PRIORITY FOR SMC
+• 4H / 1H : Identify key OBs and FVGs for intraday bias
+• 15M / 5M : Refine entry within the 4H/1H OB or FVG zone
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LIQUIDITY ZONES & SWEEP DETECTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+LIQUIDITY POOL TYPES
+
+1. Equal Highs (EQH) : 2+ swing highs at approximately the same price → buy-side liquidity
+2. Equal Lows (EQL) : 2+ swing lows at approximately the same price → sell-side liquidity
+3. Trendline Liquidity : Obvious trendline with 3+ touches → stops clustered beyond the trendline
+4. Session Highs/Lows : Previous session's high/low act as liquidity targets
+
+SWEEP DETECTION RULES
+✅ A liquidity sweep occurs when price WICKS BEYOND a liquidity level but CLOSES BACK inside
+✅ The sweep candle should show clear rejection (long wick, small body = Pin Bar / Hammer)
+✅ Volume spike on the sweep candle confirms institutional participation
+✅ A sweep followed by a BOS in the opposite direction = HIGH-PROBABILITY reversal entry
+
+SWEEP TRADING PROTOCOL
+
+1. Identify liquidity pool (EQH/EQL/trendline)
+2. Wait for price to sweep beyond → DO NOT enter on the sweep candle
+3. Look for rejection candle (Tier-1 pattern) on the NEXT candle after the sweep
+4. Entry on confirmation candle CLOSE, SL beyond the sweep wick
+5. Target: opposite liquidity pool or unmitigated OB/FVG
+
+⚠️ GOLD-SPECIFIC NOTE: XAUUSD frequently sweeps Asian session highs/lows during London open,
+and London session highs/lows during NY open. The London Fix times (10:30 AM & 3:00 PM London)
+often trigger sharp liquidity grabs. Gold is also prone to stop hunts around round numbers
+(e.g., $2,000, $2,050, $2,100) and psychologically significant levels. Use these as timing filters.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COT DATA & GOLD SENTIMENT FRAMEWORK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DATA SOURCES: CFTC Commitment of Traders (COT) Report | World Gold Council | Gold ETF Flows
+(GLD/IAU) | COMEX Futures Positioning | Central Bank Gold Purchases (monthly)
+
+METRICS TO CHECK
+
+┌──────────────────────────┬──────────────────────────────────────┬──────────────┐
+│ Metric                   │ Interpretation                       │ Action       │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ COT Net Long (Managed    │ Large specs heavily long             │ 🟡 Caution   │
+│ Money) at Extreme Highs  │ → Crowded positioning                │ on LONG      │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ COT Net Long at Extreme  │ Large specs reducing longs           │ 🟡 Caution   │
+│ Lows or Net Short        │ → Potential bottom forming           │ on SHORT     │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ COT Neutral Range        │ No extreme positioning               │ 🟢 Proceed   │
+│                          │ No squeeze risk                      │ normally     │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ Gold ETF Inflows Rising  │ Institutional demand increasing      │ 🟢 Supports  │
+│ + Price ↑                │ → Conviction buying                  │ LONG bias    │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ Gold ETF Outflows Rising │ Institutional selling pressure       │ 🟢 Supports  │
+│ + Price ↓                │ → Conviction selling                 │ SHORT bias   │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ ETF Inflows + Price ↓    │ Smart money accumulating into        │ 🟡 Watch     │
+│                          │ weakness → potential reversal         │ for LONG     │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ ETF Outflows + Price ↑   │ Distribution into strength           │ 🔴 Caution   │
+│                          │ → rally may be unsustainable         │ on LONG      │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ Central Bank Net Buying  │ Structural demand floor              │ 🟢 Supports  │
+│ (Monthly/Quarterly data) │ → Medium-term bullish tailwind       │ LONG bias    │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ US Real Yields Rising    │ Higher opportunity cost for Gold     │ 🔴 Headwind  │
+│ (TIPS yields up)         │ → Bearish pressure on XAUUSD        │ for LONG     │
+├──────────────────────────┼──────────────────────────────────────┼──────────────┤
+│ US Real Yields Falling   │ Lower opportunity cost for Gold      │ 🟢 Tailwind  │
+│ (TIPS yields down)       │ → Bullish pressure on XAUUSD        │ for LONG     │
+└──────────────────────────┴──────────────────────────────────────┴──────────────┘
+
+CONFIDENCE MODIFIERS (COT / Sentiment)
++0.5 ⭐ : COT positioning confirms trade direction (specs adding to winning side)
++0.5 ⭐ : Gold ETF flows confirm trade direction (inflows for longs, outflows for shorts)
+−0.5 ⭐ : COT positioning extreme opposing your trade direction (crowded trade risk)
+−0.5 ⭐ : US real yields moving against your Gold bias
+−1.0 ⭐ : ETF outflows while going long, or inflows while going short (divergent flow)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CORRELATION & MACRO CONTEXT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Quick-check these correlated assets BEFORE entering any trade:
+
+┌──────────────┬───────────────────────────────┬─────────────────────────┐
+│ Asset        │ Typical Gold Correlation      │ Check                   │
+├──────────────┼───────────────────────────────┼─────────────────────────┤
+│ DXY (Dollar) │ Strongly Inverse — DXY ↑ =   │ Is DXY trending today?  │
+│              │ Gold ↓ (primary driver)       │ Directional alignment?  │
+├──────────────┼───────────────────────────────┼─────────────────────────┤
+│ US10Y Real   │ Inverse — Real Yields ↑ =    │ Are TIPS yields rising  │
+│ Yield (TIPS) │ Gold ↓ (opportunity cost)    │ or falling today?       │
+├──────────────┼───────────────────────────────┼─────────────────────────┤
+│ VIX          │ Positive — VIX ↑ = Gold ↑    │ Is fear elevated?       │
+│ (Fear Index) │ (safe-haven demand)          │ VIX spike today?        │
+├──────────────┼───────────────────────────────┼─────────────────────────┤
+│ USD/JPY      │ Inverse — JPY ↑ = Gold ↑     │ Is JPY strengthening?   │
+│ (Yen)        │ (both safe-haven assets)     │ Risk-off flows active?  │
+├──────────────┼───────────────────────────────┼─────────────────────────┤
+│ Silver       │ Positive — Silver ↑ = Gold ↑ │ Is silver confirming    │
+│ (XAGUSD)     │ (precious metals pair)       │ Gold's move? Divergence?│
+└──────────────┴───────────────────────────────┴─────────────────────────┘
+
+MACRO RULES
+✅ If ≥ 3/5 correlated assets support your Gold bias → proceed with confidence
+🟡 If 2/5 align → proceed but reduce position size to 0.75% risk
+🔴 If < 2/5 align → wait or skip trade — macro headwinds too strong
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MULTIPLE ENTRY & SCALING PLAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCALING-IN FRAMEWORK (Split Risk)
+
+Total Risk per Trade: $30 (1% of capital)
+
+Entry Strategy Options:
+
+OPTION A — Standard (Single Entry)
+• 100% position at Entry 1
+• Use when: Setup is ⭐⭐⭐ high confidence, tight SL available
+
+OPTION B — Scaled Entry (2-Part)
+• 60% position at Entry 1 (primary trigger level)
+• 40% position at Entry 2 (deeper zone: next OB/FVG or fractal level)
+• SL for both = below/above the deepest entry zone
+• Use when: Setup is ⭐⭐ medium confidence, wider SL zone
+
+OPTION C — Pyramid (Add on Confirmation)
+• 70% position at Entry 1
+• 30% added ONLY after BOS in trade direction confirms momentum
+• SL moved to breakeven on Entry 1 before adding
+• Use when: Breakout setup or momentum-based entry
+
+PARTIAL TAKE-PROFIT FRAMEWORK
+
+┌────────────┬──────────────┬──────────────────────────────┐
+│ Level      │ Size         │ Action                       │
+├────────────┼──────────────┼──────────────────────────────┤
+│ TP1 (1:2)  │ Close 40%    │ Move SL to breakeven         │
+├────────────┼──────────────┼──────────────────────────────┤
+│ TP2 (1:3)  │ Close 40%    │ Trail SL to TP1 level        │
+├────────────┼──────────────┼──────────────────────────────┤
+│ TP3 (1:5+) │ Close 20%    │ Trail SL to TP2, let it run  │
+└────────────┴──────────────┴──────────────────────────────┘
+
+NOTE: TP3 is optional — only hold if HTF trend strongly supports the move.
+If R:R < 1:3 at any TP stage, close the remaining position.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MARKET REGIME CLASSIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before performing top-down analysis, classify the current market regime.
+Use the 4H and 1H charts as primary reference.
+
+REGIME 1 : TRENDING
+Conditions:
+• EMA 50 clearly above/below EMA 200 with expanding gap
+• Price making higher highs + higher lows (bullish) or lower highs + lower lows (bearish)
+• ADX > 25 (if available) or clear impulse-pullback-impulse structure
+• ATR stable or slightly expanding
+
+Trading Rules (Trending):
+→ Trade WITH the trend only (no counter-trend)
+→ Enter on pullbacks to EMA 50 or unmitigated OBs
+→ Hidden Divergence = best entry signal (continuation)
+→ Standard R:R 1:3, can extend TP3 to 1:5+
+
+REGIME 2 : RANGING
+Conditions:
+• EMA 50 ≈ EMA 200 (flat or intertwined)
+• Price oscillating between defined fractal high and fractal low
+• Swing highs and lows overlapping — no clear structure progression
+• ATR contracting or flat
+
+Trading Rules (Ranging):
+→ Trade from range extremes ONLY (buy at range low, sell at range high)
+→ Reduce R:R target to 1:2 (accept smaller moves)
+→ Regular Divergence at range boundaries = best signal
+→ Reduce position size to 0.75% risk
+→ Expect false breakouts — wait for candle CLOSE beyond range before breakout entry
+→ No Tier-3 patterns — only Tier-1 at range extremes
+
+REGIME 3 : VOLATILE / EVENT-DRIVEN
+Conditions:
+• ATR > 2× its 20-period average
+• Sharp, impulsive moves with large candle bodies
+• Often triggered by FOMC, NFP, CPI releases, geopolitical crises, or central bank surprises
+• EMA 50 and EMA 200 may be breached rapidly
+
+Trading Rules (Volatile):
+→ Reduce position size to 0.5% risk
+→ Widen SL by 1.5× normal ATR-based distance
+→ Only trade AFTER the initial spike settles (wait for a range to form post-spike)
+→ Liquidity sweep + rejection = best setup in this regime
+→ Minimum R:R remains 1:3 but expect wider stops and larger targets
+→ If unsure → ⚪ WAIT. Capital preservation is priority.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COUNTER-TREND TRADE RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Counter-trend trades are ONLY permitted when ALL of the following conditions are met:
+
+MANDATORY REQUIREMENTS (ALL must be ✅)
+☐ 1. Strong RSI Divergence (🔴 grade) — Regular Divergence on 1H or 4H
+☐ 2. Tier-1 candlestick pattern at a SIGNIFICANT S/R level (fractal, OB, round number)
+☐ 3. Minimum R:R upgraded to 1:4 (not 1:3)
+☐ 4. Position size reduced to 0.5% of capital ($15 risk instead of $30)
+☐ 5. Price has reached an extreme level (RSI < 20 or RSI > 80 on entry TF)
+
+ADDITIONAL FILTERS
+✅ Liquidity sweep occurred at the level → swept stops, now reversing
+✅ MACD histogram shows momentum exhaustion (declining histogram bars)
+✅ COT positioning is extreme in the trend direction (crowded trade reversal risk)
+✅ At least 2/5 macro-correlated assets support the reversal
+
+COUNTER-TREND EXECUTION PROTOCOL
+• Use OPTION A (Single Entry) only — no scaling into counter-trend trades
+• Set TP at the nearest significant S/R level (conservative target)
+• Trail SL aggressively — move to breakeven after 1:1 R:R is reached
+• If trade does not trigger within 3 candles of signal → invalidate and cancel
+
+⚠️ GOLDEN RULE: If in doubt, DO NOT take a counter-trend trade.
+It is always safer to wait for a trend-aligned setup.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SESSION DETECTION (Auto)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- 00:00–08:00 UTC → Asian
+- 07:00–12:00 UTC → London
+- 12:00–17:00 UTC → London–NY Overlap
+- 17:00–21:00 UTC → New York
+
+⚠️ GOLD SESSION NOTES:
+• London Open (07:00–08:00 UTC) is THE highest-volatility window for XAUUSD — most
+  directional moves start here. This is the best session for Gold scalps & day trades.
+• London Fix Times — AM Fix ~10:30 London (09:30 UTC summer) and PM Fix ~15:00 London
+  (14:00 UTC summer) often trigger sharp price spikes or reversals.
+• London–NY Overlap (12:00–17:00 UTC) offers the highest volume and tightest spreads.
+  Major US data releases (NFP, CPI, FOMC) occur in this window.
+• Asian Session is typically low-range for Gold — best used for identifying the Asian range
+  to anticipate London breakout direction.
+• NY Close (21:00 UTC) — positioning often unwinds near close; avoid new entries after 20:00 UTC.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROLE: Professional Day Trader & Scalper
+STRATEGY: Top-Down Analysis | All positions closed intraday
+Generate the full report in REPORT LANG. ⚠️ Do not alter the output template.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TASK 1 — NEWS CHECK
+━━━━━━━━━━━━━━━━━━━
+Search: "economic calendar high impact news today XAUUSD gold FOMC NFP CPI PPI"
+
+Answer:
+
+1. Any high-impact events today affecting ASSET?
+   (Focus: FOMC rate decisions, NFP, CPI, PPI, PCE, Fed speeches, geopolitical events)
+2. Which hours should be avoided (±30 min around releases)?
+3. Does the current session overlap with a news window?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 2 — TECHNICAL ANALYSIS (6 Timeframes)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Charts attached in order: 1W → 1D → 4H → 1H → 15M → 5M
+
+STEP A | Big Picture (1W, 1D)
+
+- Is price above or below EMA 200? → Defines long-term trend
+- Identify nearest major fractal S/R levels
+- Mark any impulsively-approached levels as NO-TRADE zones
+- Note any Weekly/Daily Tier-1 candlestick patterns at key S/R
+- Identify key round-number psychological levels (e.g., $2,000, $2,050, $2,100, $2,150, $2,200)
+
+STEP B | Intraday Bias (4H, 1H)
+
+- Is 1H trend aligned with 4H? → Defines today's directional bias
+- Has a Break of Structure (BOS) or Change of Character (CHoCH) occurred recently?
+- Are we in a pullback or impulse phase?
+- Identify any Tier-1 or Tier-2 patterns on 4H/1H closes
+- Mark unmitigated Order Blocks (OB) and Fair Value Gaps (FVG) on 4H/1H
+- Check RSI for Regular or Hidden Divergence on both TFs
+→ Regular Div at structure = potential reversal bias
+→ Hidden Div during pullback = continuation confirmation
+- Identify Liquidity Zones: Equal Highs/Lows, session highs/lows as targets
+
+STEP C | Entry & Timing (15M, 5M)
+Look for ONE primary trigger (ranked by reliability):
+
+PRIORITY 1 — Divergence + Pattern Combo
+• RSI Regular/Hidden Divergence on 15M or 5M
+• Confirmed by Tier-1 candlestick pattern at same level
+• This is the HIGHEST CONFIDENCE setup
+
+PRIORITY 2 — Pattern at Key Level
+a) Tier-1 reversal candle at EMA 50/200 touch
+b) Williams Fractal breakout + follow-through candle
+c) Engulfing pattern at fractal S/R zone
+
+PRIORITY 3 — Divergence Only (Timing Signal)
+• Use 5M divergence as timing/entry trigger only
+• Must align with higher-TF bias to act on it
+
+PRIORITY 4 — Liquidity Sweep + Rejection
+• Price sweeps EQH/EQL or session high/low → wicks beyond and closes back
+• Rejection candle (Tier-1) forms on next candle after sweep
+• Entry on confirmation candle CLOSE, SL beyond sweep wick
+
+- MACD divergence cross-check: Does histogram slope agree?
+- Only confirm entry after 5M candle CLOSE
+- Inside Bar breakout after divergence = bonus confirmation
+- Check: Is entry within an unmitigated OB or FVG zone? (bonus confluence)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 3 — CONFLUENCE SCORE
+━━━━━━━━━━━━━━━━━━━━━━━━
+Count timeframes aligned with trade bias:
+5–6 → ⭐⭐⭐ High Confidence
+3–4 → ⭐⭐   Medium Confidence
+1–2 → ⭐     Low Confidence (skip trade)
+
+BONUS CONFIDENCE MODIFIERS (+/-)
++0.5 ⭐ : Tier-1 pattern + divergence occur on SAME candle/level
++0.5 ⭐ : MACD confirms RSI divergence on same TF
++0.5 ⭐ : Entry is within unmitigated OB or FVG zone
++0.5 ⭐ : COT positioning confirms trade direction (specs aligned)
++0.5 ⭐ : Liquidity sweep occurred at entry level (swept stops)
++0.5 ⭐ : Gold ETF flows confirm trade direction
+−0.5 ⭐ : Pattern is Tier-3 only (indecision candle)
+−0.5 ⭐ : Divergence in RSI neutral zone (40–60)
+−0.5 ⭐ : COT positioning extreme opposing trade direction
+−0.5 ⭐ : US real yields moving against Gold bias
+−0.5 ⭐ : < 3/5 macro-correlated assets support trade direction
+−1.0 ⭐ : Pattern contradicts higher-TF trend (counter-trend setup)
+−1.0 ⭐ : ETF flows divergent from trade direction (outflows on longs)
+
+If calculated R:R < MIN R:R → override bias to ⚪ WAIT
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 4 — TRADE PLAN SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Synthesize: News + Market Regime + Trend + Session + SMC (OB/FVG) + Liquidity
++ Pattern + Divergence + COT/Sentiment + Macro Correlation + R:R
+→ into final verdict.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TASK 5 — DECISION LOGIC FLOWCHART
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Follow this logic tree from top to bottom before executing any trade:
+
+┌─────────────────────────────────────────────────────────┐
+│  START: Classify Market Regime (4H/1H)                  │
+│  → TRENDING / RANGING / VOLATILE                        │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  NEWS CHECK: Any high-impact event within ±30 min?      │
+│  (FOMC, NFP, CPI, PPI, PCE, Fed speeches)              │
+│  → YES: ⚪ WAIT (skip trade)                            │
+│  → NO : Continue ▼                                      │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  HTF BIAS: Is price above/below EMA 200 on 1D?          │
+│  → ABOVE: Bullish HTF bias                              │
+│  → BELOW: Bearish HTF bias                              │
+│  Is 4H aligned with 1D? Is 1H aligned with 4H?          │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  SMC CHECK: Any unmitigated OB/FVG near current price?  │
+│  → YES: Mark as high-probability entry zone             │
+│  → NO : Rely on EMA / Fractal S/R levels                │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  LIQUIDITY CHECK: Is price near EQH/EQL/session levels? │
+│  → YES: Watch for sweep → wait for rejection candle     │
+│  → NO : Proceed to pattern check                        │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  DIVERGENCE CHECK (15M/5M):                             │
+│  → RSI Divergence found?                                │
+│     YES + Tier-1 Pattern = PRIORITY 1 (highest)         │
+│     YES only             = PRIORITY 3 (timing trigger)  │
+│  → No divergence: check for pattern only                │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  PATTERN CHECK (5M/15M):                                │
+│  → Tier-1 at key level (EMA/OB/Fractal)?                │
+│     YES = PRIORITY 2 entry                              │
+│  → Tier-2 continuation?                                 │
+│     YES = Enter if trend-aligned                        │
+│  → Tier-3 / No pattern?                                 │
+│     → ⚪ WAIT (insufficient signal)                     │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  IS THIS COUNTER-TREND?                                 │
+│  → YES: Apply Counter-Trend Rules                       │
+│     All 5 mandatory conditions met?                     │
+│     → YES: Proceed with reduced size (0.5% risk, 1:4)  │
+│     → NO : ⚪ WAIT (do NOT take counter-trend)          │
+│  → NO : Continue ▼                                      │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  COT / SENTIMENT CHECK:                                 │
+│  → COT positioning extreme opposing your direction?     │
+│     YES: Reduce confidence −0.5⭐                       │
+│  → Gold ETF flows confirm direction?                    │
+│     YES: Boost confidence +0.5⭐                        │
+│  → US Real Yields moving against Gold bias?             │
+│     YES: Reduce confidence −0.5⭐                       │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  MACRO CORRELATION CHECK:                               │
+│  → DXY / US10Y Real Yield / VIX / USD-JPY / Silver     │
+│     ≥ 3/5 support bias → ✅ Proceed                    │
+│     2/5 support       → 🟡 Reduce to 0.75% risk        │
+│     < 2/5 support     → 🔴 WAIT or skip                │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  CONFLUENCE SCORE: Count aligned TFs + apply modifiers  │
+│  → ⭐⭐⭐ (5-6 TFs): Full position (Option A/B/C)       │
+│  → ⭐⭐   (3-4 TFs): Reduced size or Option B           │
+│  → ⭐     (1-2 TFs): ⚪ SKIP TRADE                     │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  R:R CHECK:                                             │
+│  → R:R ≥ 1:3 (or 1:4 for counter-trend)?               │
+│     YES → EXECUTE: Set Entry, SL, TP1/TP2/TP3          │
+│     NO  → ⚪ WAIT (R:R insufficient)                    │
+└───────────────────────┬─────────────────────────────────┘
+                        ▼
+┌─────────────────────────────────────────────────────────┐
+│  ✅ EXECUTE TRADE                                       │
+│  → Select scaling option (A/B/C) per regime             │
+│  → Set partial TP levels (TP1 40%, TP2 40%, TP3 20%)   │
+│  → Complete Pre-Trade Checklist                         │
+│  → Enter on CLOSED 5M confirmation candle               │
+└─────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OUTPUT TEMPLATE v2 (fill all fields — do not modify structure)
+⚠️ RESTRUCTURED: Trade Setup FIRST → Detailed Analysis AFTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 Trade Analysis Report: [Asset]
+Date/Time : [DD MMM YYYY | HH:MM UTC]
+Session   : [Asian / London / London-NY Overlap / New York]
+Language  : [Thai]
+
+News Risk    : [🔴 High / 🟡 Medium / 🟢 None]
+News Details : [Event name | Time (UTC) | Expected impact — or "None"]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART A — QUICK DECISION (อ่านก่อนเทรด)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+1. 🎯 Execution Plan
+
+BIAS         : [🟢 LONG / 🔴 SHORT / ⚪ WAIT]
+Setup Type   : [Div+Pattern / Pattern Only / Div Only / Fractal Breakout / Liq Sweep+Rejection]
+Confidence   : [⭐⭐⭐ / ⭐⭐ / ⭐] — [X/6] TFs aligned | Modifiers: [all applied adjustments]
+Scaling Plan : [Option A / B / C] — [Reason per regime/confidence]
+
+Entry Zone    : [Price or range] — [At OB / FVG / EMA / Fractal level]
+Entry 2 (B/C) : [Price — if using scaled entry | N/A]
+Stop Loss     : [Price] — [Reason: e.g., below 15M fractal low / beyond sweep wick / beyond OB]
+TP1 (1:2)     : [Price] — Close 40%, move SL to breakeven
+TP2 (1:3)     : [Price] — Close 40%, trail SL to TP1
+TP3 (1:5+)    : [Price] — Close 20%, trail SL to TP2 [or N/A if regime = ranging]
+R:R           : [X:X] | Minimum required: 1:3 (1:4 for counter-trend)
+Position Size : [Lots] — based on [$30 / $22.50 / $15] risk and [X pip/point] SL distance
+Invalidation  : [Condition that cancels setup — e.g., candle closes beyond SL level,
+                 divergence negated by new swing, OB mitigated, pattern structure breaks]
+
+---
+
+2. ⚠️ Risk Notes
+
+[Specific warnings covering:]
+
+- Market regime caveat (e.g., "Volatile regime — reduced position size applied")
+- News timing risk (especially FOMC, NFP, CPI — Gold is extremely sensitive to these)
+- Pattern tier limitation (e.g., "Tier-3 Doji only — reduce size")
+- Divergence grade caveat (e.g., "RSI Div in neutral zone — lower reliability")
+- MACD conflict (e.g., "MACD does not confirm RSI divergence")
+- OB/FVG status (e.g., "OB already mitigated — lower reliability")
+- Liquidity warning (e.g., "EQH above entry — risk of stop hunt before move")
+- COT caveat (e.g., "Managed Money net long at 3-year high — crowded long risk")
+- Real yield headwind (e.g., "US real yields rising — structural headwind for Gold")
+- Macro headwind (e.g., "Only 2/5 macro assets aligned — reduced size")
+- Proximity to major S/R impulsive zone (NO-TRADE zone warning)
+- ATR context (e.g., "ATR expanded — widen SL accordingly")
+- London Fix timing (e.g., "Approaching PM Fix — expect volatility spike")
+- Round number proximity (e.g., "Price near $2,100 psychological level — expect stop hunts")
+- Counter-trend setup warning (if applicable)
+
+---
+
+3. ✅ Pre-Trade Checklist
+
+☐ Market regime identified and appropriate rules applied
+☐ No high-impact news within 30 minutes (FOMC, NFP, CPI, PPI, PCE, Fed speeches)
+☐ Session active and supports directional move (London or London-NY preferred)
+☐ ≥ 3/6 timeframes aligned
+☐ R:R ≥ 1:3 (or 1:4 for counter-trend)
+☐ Candlestick pattern tier identified and location validated
+☐ OB/FVG zones marked and entry within institutional zone (if applicable)
+☐ Liquidity zones identified and sweep status noted
+☐ Divergence type and grade confirmed (if applicable)
+☐ MACD cross-check completed
+☐ COT positioning & Gold ETF flows checked — no extreme opposing conditions
+☐ Macro correlation ≥ 3/5 supporting (or position size reduced)
+☐ Scaling plan selected (Option A/B/C) per confidence level
+☐ Entry trigger confirmed on CLOSED 5M candle
+☐ Position size calculated per risk settings and regime adjustments
+☐ If counter-trend: all 5 mandatory conditions verified ✅
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART B — DETAILED ANALYSIS (รายละเอียดเชิงลึก)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+---
+
+4. 🌐 Market Regime
+
+Regime       : [TRENDING / RANGING / VOLATILE]
+Evidence     : [EMA 50 vs 200 relationship | Structure pattern | ATR context]
+Trading Rules: [Applicable rules per regime — reference MARKET REGIME CLASSIFICATION section]
+
+---
+
+5. 🧬 Multi-Timeframe Alignment
+
+| TF | Trend (EMA200) | Structure | OB/FVG Zone | Candle Pattern | RSI Divergence | Aligned? |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1W |  | Major S/R level | [None] | [Pattern / None] | [Type / None] | ✅ / ❌ |
+| 1D |  | Key level | [None] | [Pattern / None] | [Type / None] | ✅ / ❌ |
+| 4H |  | Trend/Pullback | [OB/FVG price zone] | [Pattern / None] | [Type / Strength] | ✅ / ❌ |
+| 1H |  | Trend/Pullback | [OB/FVG price zone] | [Pattern / None] | [Type / Strength] | ✅ / ❌ |
+| 15M |  | Entry pattern | [OB/FVG price zone] | [Pattern / Tier] | [Type / Strength] | ✅ / ❌ |
+| 5M |  | Trigger confirm | [OB/FVG price zone] | [Pattern / Tier] | [Type / MACD confirm] | ✅ / ❌ |
+
+Aligned: [X / 6] | Confidence Modifiers: [+/− adjustments]
+
+---
+
+6. 🏗️ Market Structure & Liquidity (SMC)
+
+Key Order Blocks:
+
+| TF | Type (Bullish/Bearish OB) | Price Zone | Mitigated? | Aligned w/ EMA? |
+| --- | --- | --- | --- | --- |
+| 4H | [Bullish OB / Bearish OB] | [Price range] | [Yes / No] | [Yes / No] |
+| 1H | [Bullish OB / Bearish OB] | [Price range] | [Yes / No] | [Yes / No] |
+
+Fair Value Gaps:
+
+| TF | Direction | Price Zone | Filled? |
+| --- | --- | --- | --- |
+| 4H | [Bullish / Bearish] | [Price range] | [Yes / No / Partial] |
+| 1H | [Bullish / Bearish] | [Price range] | [Yes / No / Partial] |
+
+Liquidity Zones:
+
+- Buy-side Liquidity (EQH) : [Price level — number of equal highs]
+- Sell-side Liquidity (EQL): [Price level — number of equal lows]
+- Session Liquidity : [Previous session high/low levels]
+- Sweep Detected? : [Yes — describe | No]
+
+BOS / CHoCH Status: [Most recent structural break — direction + TF + price level]
+
+---
+
+7. 🕯️ Candlestick Pattern Analysis
+
+Dominant Pattern : [Pattern name | Timeframe | Tier]
+Location         : [At EMA50 / EMA200 / Fractal S/R / OB / FVG / Mid-range]
+Body/Wick Ratio  : [e.g., Wick = 2.5× body → valid Pin Bar]
+Volume Context   : [Above avg / Below avg / Neutral]
+Pattern Verdict  : [🟢 Strong signal / 🟡 Moderate / 🔴 Weak — explain why]
+
+---
+
+8. 📉 Divergence Analysis
+
+| Oscillator | TF | Price Action | Oscillator Action | Div Type | Grade |
+| --- | --- | --- | --- | --- | --- |
+| RSI(14) | 4H | [Higher High/Low Low] | [Lower High/High Low] | [Reg/Hidden/Exg] | 🔴/🟡/🟢 |
+| RSI(14) | 1H |  |  |  |  |
+| RSI(14) | 15M |  |  |  |  |
+| RSI(14) | 5M |  |  |  |  |
+| MACD | 15M | [Histogram direction] | [Confirms / Denies] | [Cross-check] |  |
+
+Divergence Verdict: [Strongest divergence signal found + grade + TF]
+Alignment Check  : [Does divergence align with or contradict trade bias?]
+
+---
+
+9. 💰 COT Data & Gold Sentiment
+
+COT Net Positioning : [Managed Money net long/short — contracts] → [🟢 Normal / 🟡 Elevated / 🔴 Extreme]
+COT Weekly Change   : [Increasing / Decreasing longs/shorts] → [Interpretation]
+Gold ETF Flows      : [Inflows / Outflows — tonnes this week] → [Supports / Opposes bias]
+US Real Yield Trend  : [Rising / Falling / Flat] → [Headwind / Tailwind for Gold]
+Central Bank Buying : [Net buyer / seller — latest data] → [Structural support / pressure]
+Confidence Adj      : [+0.5⭐ / −0.5⭐ / −1.0⭐ / None — reason]
+
+---
+
+10. 🌍 Macro Correlation Check
+
+| Asset | Direction Today | Supports Gold Bias? |
+| --- | --- | --- |
+| DXY | [↑ / ↓ / Flat] | [✅ / ❌] |
+| US10Y Real Yield (TIPS) | [↑ / ↓ / Flat] | [✅ / ❌] |
+| VIX (Fear Index) | [↑ / ↓ / Flat] | [✅ / ❌] |
+| USD/JPY (Yen) | [↑ / ↓ / Flat] | [✅ / ❌] |
+| Silver (XAGUSD) | [↑ / ↓ / Flat] | [✅ / ❌] |
+
+Macro Aligned: [X / 5] → [✅ Proceed / 🟡 Reduce size / 🔴 Wait]
+
+---
+
+11. 🔍 Confluence Summary
+
+- Regime : [Trending / Ranging / Volatile] → applicable rules applied
+- EMA : Price is [above/below] EMA 50 and [above/below] EMA 200 on 5M/15M
+- SMC : [Inside OB zone / Near FVG / Liquidity sweep occurred / None]
+- RSI : [Overbought / Oversold / Neutral] | Divergence Grade: [🔴 Strong / 🟡 Moderate / 🟢 Weak / None]
+- MACD : [Confirms divergence / No divergence / Contradicts]
+- Pattern : [Tier-1/2/3 pattern at key level — name it | or "No valid pattern"]
+- Volume : [Strong / Average / Weak] buying/selling pressure
+- COT : [Supports / Neutral / Opposes] trade direction
+- Macro : [X/5 aligned — proceed / reduce / wait]
+- Session : [Why current session supports or contradicts the bias]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART C — JSON OUTPUT (optional add-on)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To include JSON output, attach the separate file: XAUUSD_JSON_Prompt.txt
+When attached, generate a structured JSON object after the report.
+When NOT attached, skip JSON output — report only.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+END OF TEMPLATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
