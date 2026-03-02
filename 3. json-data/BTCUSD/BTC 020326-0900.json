@@ -1,0 +1,243 @@
+{
+  "report_metadata": {
+    "asset": "BTCUSD",
+    "date": "02 Mar 2026",
+    "time_utc": "09:00",
+    "session": "Asian → London Overlap",
+    "language": "Thai"
+  },
+  "news_risk": {
+    "level": "High",
+    "events": [
+      {
+        "name": "Strait of Hormuz Crisis (US-Iran Geopolitical Tension)",
+        "time_utc": null,
+        "impact": "Risk-off ทั่วตลาด เงินไหลเข้า Safe Haven (Gold, US Treasury) — BTC ถูกกดดันในฐานะ Risk Asset"
+      },
+      {
+        "name": "US PPI January (Released Feb 27)",
+        "time_utc": null,
+        "impact": "Core PPI +3.6% YoY vs คาด 3.0% — ร้อนเกินคาด, ตลาด price-in Fed คงดอกเบี้ยจนอย่างน้อย มิ.ย. 2026"
+      }
+    ],
+    "avoid_hours": [
+      "ระวัง Headline-driven volatility ตลอดทั้งวัน จาก Geopolitical Risk"
+    ]
+  },
+  "execution_plan": {
+    "bias": "WAIT",
+    "setup_type": null,
+    "confidence": {
+      "stars": "⭐",
+      "tf_aligned": "2/6",
+      "modifiers": [
+        "-0.5 RSI Neutral Zone ทุก Intraday TF (40-51)",
+        "-0.5 Macro aligned เพียง 2/5",
+        "-0.5 Funding Rate ลบมาก — Short Squeeze Risk"
+      ]
+    },
+    "scaling_plan": null,
+    "scaling_reason": "ไม่เข้าเทรด — ไม่มี Valid Setup",
+    "entry_zone": {
+      "price": null,
+      "level_type": null
+    },
+    "entry_2": {
+      "price": null,
+      "level_type": null
+    },
+    "stop_loss": {
+      "price": null,
+      "reason": null
+    },
+    "take_profit": {
+      "tp1": { "price": null, "rr": null, "action": null },
+      "tp2": { "price": null, "rr": null, "action": null },
+      "tp3": { "price": null, "rr": null, "action": null }
+    },
+    "rr_ratio": null,
+    "position_size": {
+      "lots": null,
+      "risk_amount": null,
+      "sl_distance_pips": null
+    },
+    "invalidation": "รอจน BOS เกิดขึ้นบน 1H/4H → Bullish BOS เหนือ ~67,500 พร้อม Tier-1 Pattern = พิจารณา LONG | Bearish BOS ใต้ ~63,000 พร้อม Rejection = พิจารณา SHORT"
+  },
+  "risk_notes": [
+    "Market Regime: ราคาอยู่ในโซน RANGING บน 4H/1H — EMA 50 และ EMA 200 เกือบทับซ้อนกันบน 1H (66,262 vs 65,920) ไม่ควรเทรดกลาง Range",
+    "Geopolitical Risk สูงมาก: วิกฤตช่องแคบ Hormuz — BTC ถูกปฏิบัติเป็น Risk Asset ถูกกดดัน",
+    "Weekly RSI Oversold (28.02): อาจเกิด Relief Bounce แต่ยังไม่มี Confirmation — ห้ามเข้า Counter-Trend โดยไม่มีสัญญาณชัด",
+    "Funding Rate ติดลบมาก (3-month low): Short Crowded → Short Squeeze Risk สูง — อย่าเข้า SHORT ตอนนี้",
+    "Macro Headwind: เพียง 2/5 Macro Assets สนับสนุน — ไม่เพียงพอสำหรับเข้าเทรด",
+    "ATR Context: 4H ATR 1,368 | 1H ATR 777 — ความผันผวนปานกลาง",
+    "ไม่มี Tier-1 Candlestick Pattern ที่ Key Level บน 15M/5M",
+    "RSI Neutral Zone (40-51) ทุก Intraday TF — ไม่มี Divergence ที่ชัดเจน"
+  ],
+  "pre_trade_checklist": {
+    "regime_identified": true,
+    "no_news_30min": false,
+    "session_active": false,
+    "tf_aligned_3_plus": false,
+    "rr_minimum_met": false,
+    "pattern_validated": false,
+    "ob_fvg_marked": true,
+    "liquidity_noted": true,
+    "divergence_confirmed": false,
+    "macd_crosscheck": false,
+    "funding_oi_checked": true,
+    "macro_3_plus": false,
+    "scaling_plan_set": false,
+    "entry_confirmed_5m": false,
+    "position_size_calc": false,
+    "counter_trend_verified": null
+  },
+  "market_regime": {
+    "regime": "RANGING",
+    "evidence": "1H: EMA 50 (65,920) ≈ EMA 200 (66,262) แทบทับซ้อน, ราคาแกว่ง 63,000-68,000 | 4H: ราคาที่ EMA 50 (66,235) ต่ำกว่า EMA 200 (70,925) → Bearish Structure แต่ Momentum ชะลอ | ATR 4H (1,368) ลดลง → Volatility หดตัว",
+    "trading_rules": "เทรดจากขอบ Range เท่านั้น (Buy ~63,000 / Sell ~68,000), ลด R:R เป็น 1:2, ลด Position Size เป็น 0.75% risk, ใช้เฉพาะ Tier-1 Pattern ที่ Range Extreme, คาดว่าจะมี False Breakout"
+  },
+  "multi_tf_alignment": [
+    {
+      "tf": "1W",
+      "trend_ema200": "Bearish",
+      "structure": "ราคา 66,621 ต่ำกว่า EMA 50 (98,743) มาก — Lower Lows จาก ATH 126K",
+      "ob_fvg_zone": null,
+      "candle_pattern": "Indecision (Body เล็ก) — Tier-3",
+      "rsi_divergence": "RSI 28.02 Oversold แต่ไม่มี Divergence ชัดเจน",
+      "aligned": false
+    },
+    {
+      "tf": "1D",
+      "trend_ema200": "Bearish",
+      "structure": "ราคา 66,165 ต่ำกว่า EMA 200 (96,816) และ EMA 50 (77,214) — ฟื้นจาก Low ~58K กำลัง Pullback ขึ้น",
+      "ob_fvg_zone": null,
+      "candle_pattern": null,
+      "rsi_divergence": "RSI 40.51 Neutral — ไม่มี Divergence",
+      "aligned": false
+    },
+    {
+      "tf": "4H",
+      "trend_ema200": "Bearish",
+      "structure": "ราคาที่ EMA 50 (66,235) ต่ำกว่า EMA 200 (70,925) — Consolidation หลัง Recovery ยังไม่มี BOS",
+      "ob_fvg_zone": "Bearish OB 70,000-70,925 (Unmitigated) | Bearish FVG 68,500-70,000",
+      "candle_pattern": null,
+      "rsi_divergence": "RSI 49.49 Neutral — ไม่มี Divergence",
+      "aligned": false
+    },
+    {
+      "tf": "1H",
+      "trend_ema200": "Neutral",
+      "structure": "Ranging — EMA 50 (65,920) ≈ EMA 200 (66,262) ทับซ้อน, Swing Highs/Lows Overlap",
+      "ob_fvg_zone": "Bullish OB 63,000-63,500 | Bullish FVG 65,000-65,500 (Partial Fill)",
+      "candle_pattern": null,
+      "rsi_divergence": "RSI 50.16 Neutral — ไม่มี Divergence",
+      "aligned": false
+    },
+    {
+      "tf": "15M",
+      "trend_ema200": "Neutral",
+      "structure": "Consolidation รอบ EMA — ราคา ≈ EMA 50 (66,203) > EMA 200 (65,921)",
+      "ob_fvg_zone": null,
+      "candle_pattern": null,
+      "rsi_divergence": "RSI 51.35 Neutral — ไม่มี Divergence",
+      "aligned": false
+    },
+    {
+      "tf": "5M",
+      "trend_ema200": "Neutral",
+      "structure": "Choppy ไม่มีทิศทาง — ราคา 66,183 < EMA 200 (66,262) > EMA 50 (66,051)",
+      "ob_fvg_zone": null,
+      "candle_pattern": "Small Body Candles — Tier-3 Indecision",
+      "rsi_divergence": "RSI 43.92 Neutral — ไม่มี Divergence",
+      "aligned": false
+    }
+  ],
+  "smc": {
+    "order_blocks": [
+      {
+        "tf": "4H",
+        "type": "Bearish OB",
+        "price_zone": "70,000 - 70,925",
+        "mitigated": false,
+        "aligned_ema": true
+      },
+      {
+        "tf": "1H",
+        "type": "Bullish OB",
+        "price_zone": "63,000 - 63,500",
+        "mitigated": false,
+        "aligned_ema": false
+      }
+    ],
+    "fair_value_gaps": [
+      {
+        "tf": "4H",
+        "direction": "Bearish",
+        "price_zone": "68,500 - 70,000",
+        "filled": "No"
+      },
+      {
+        "tf": "1H",
+        "direction": "Bullish",
+        "price_zone": "65,000 - 65,500",
+        "filled": "Partial"
+      }
+    ],
+    "liquidity_zones": {
+      "buy_side_eqh": "67,500 - 68,000 (1H Swing Highs หลายจุด)",
+      "sell_side_eql": "63,000 (Recent Swing Low 24 ก.พ.)",
+      "session_liquidity": "Asian High ~66,600 / Asian Low ~65,700",
+      "sweep_detected": null
+    },
+    "bos_choch_status": "4H: ยังไม่มี BOS — Consolidation 63,000-68,000 | 1H: Minor CHoCH เมื่อ Break เหนือ 66,000 (Feb 28) แต่ยังไม่ยืนยัน BOS เหนือ 67,500"
+  },
+  "candlestick_pattern": {
+    "dominant_pattern": "ไม่พบ Tier-1 Pattern",
+    "timeframe": "N/A",
+    "tier": 3,
+    "location": "Mid-range",
+    "body_wick_ratio": "Small Body Candles — Indecision",
+    "volume_context": "Below avg",
+    "verdict": "Weak",
+    "verdict_reason": "ไม่มี Valid Tier-1/2 Pattern ที่ Key Level — มีเฉพาะ Tier-3 Indecision Candles กลาง Range, Volume ต่ำกว่าค่าเฉลี่ยในช่วง Asian Session"
+  },
+  "divergence": {
+    "signals": [],
+    "verdict": "ไม่พบ Divergence ที่มีนัยสำคัญบน TF ใดๆ — RSI อยู่ในโซน Neutral (40-51) ทุก Intraday TF",
+    "alignment_check": "N/A — ไม่มี Divergence Signal"
+  },
+  "funding_oi": {
+    "funding_rate": "ลบมาก (ต่ำสุดในรอบ 3 เดือน)",
+    "funding_status": "Extreme",
+    "oi_trend": "Rising",
+    "oi_price_direction": "↑",
+    "oi_interpretation": "OI Rising + Price Recovering → Short ใหม่เข้ามามากแต่ราคาไม่ลงต่อ → Short Squeeze Setup",
+    "ls_ratio": null,
+    "ls_status": "Crowded short",
+    "squeeze_risk": "Yes — Short Squeeze",
+    "confidence_adj": "-0.5 สำหรับ SHORT Bias (Funding Extreme ฝั่ง Short) | +0.5 สำหรับ LONG Bias (ถ้ามี Trigger)"
+  },
+  "macro_correlation": {
+    "assets": [
+      { "name": "DXY", "direction": "↑", "supports_bias": false },
+      { "name": "SPX / NQ100", "direction": "↓", "supports_bias": false },
+      { "name": "US10Y", "direction": "↓", "supports_bias": true },
+      { "name": "ETH/BTC", "direction": "↑", "supports_bias": true },
+      { "name": "Gold (XAU)", "direction": "↑", "supports_bias": false }
+    ],
+    "aligned_count": "2/5",
+    "action": "Wait"
+  },
+  "confluence_summary": {
+    "regime": "Ranging (4H/1H) ภายใน HTF Bearish Trend → เทรดจากขอบ Range เท่านั้น",
+    "ema": "ราคาอยู่ที่ EMA 50 บน 4H (66,235) | ระหว่าง EMA 50/200 บน 1H ซึ่งเกือบทับกัน (~65,920/66,262) → ไม่มีทิศทาง",
+    "smc": "ไม่อยู่ใน OB Zone | FVG 1H partial filled | ไม่มี Liquidity Sweep",
+    "rsi": "Neutral ทุก Intraday TF (40-51) | Weekly Oversold 28.02 (Warning ไม่ใช่ Signal)",
+    "macd": "Neutral/Flat ทุก TF — ไม่มี Divergence ไม่มี Momentum ชัดเจน",
+    "pattern": "ไม่มี Tier-1/2 Pattern ที่ Key Level — มีแต่ Tier-3 Indecision",
+    "volume": "ต่ำ — Asian Session, ไม่มี Volume Spike",
+    "funding": "ลบมาก — Opposes SHORT, อาจ Support LONG ถ้ามี Trigger",
+    "macro": "2/5 Mixed — ไม่สนับสนุนทิศทางใดชัดเจน",
+    "session": "Asian→London — Liquidity กำลังเพิ่ม, BTC มักถูก Sweep Asian High/Low ช่วง London Open → รอดู Reaction"
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "report_metadata": {
+    "asset": "XAUUSD",
+    "date": "02 Mar 2026",
+    "time_utc": "09:00",
+    "session": "London",
+    "language": "Thai"
+  },
+  "news_risk": {
+    "level": "Medium",
+    "events": [
+      {
+        "name": "S&P Global Manufacturing PMI (Final)",
+        "time_utc": "14:45",
+        "impact": "ข้อมูลภาคการผลิต กระทบปานกลางต่อ DXY และทองคำ"
+      },
+      {
+        "name": "ISM Manufacturing PMI",
+        "time_utc": "15:00",
+        "impact": "ข้อมูลสำคัญภาคการผลิตสหรัฐ — กระทบ DXY, US Yields, Gold โดยตรง"
+      },
+      {
+        "name": "ISM Manufacturing New Orders Index",
+        "time_utc": "15:00",
+        "impact": "ดัชนีคำสั่งซื้อใหม่ ส่งสัญญาณกิจกรรมการผลิตในอนาคต"
+      }
+    ],
+    "avoid_hours": ["14:30-15:30 UTC"]
+  },
+  "execution_plan": {
+    "bias": "LONG",
+    "setup_type": "Pattern Only",
+    "confidence": {
+      "stars": "⭐⭐⭐",
+      "tf_aligned": "6/6",
+      "modifiers": [
+        "+0.5 Entry within unmitigated 4H Bullish OB",
+        "+0.5 COT positioning normal supports LONG",
+        "+0.5 Gold ETF inflows strong",
+        "-0.5 1H RSI near overbought 69.2"
+      ]
+    },
+    "scaling_plan": "Option A",
+    "scaling_reason": "Trending regime + High confidence (⭐⭐⭐) + SL แคบที่โซน OB — Single Entry เหมาะสม",
+    "entry_zone": {
+      "price": 5305.0,
+      "level_type": "OB + Round Number"
+    },
+    "entry_2": {
+      "price": null,
+      "level_type": null
+    },
+    "stop_loss": {
+      "price": 5265.0,
+      "reason": "ต่ำกว่า 15M EMA50 (5,265) และ Fractal Low ล่าสุดบน 15M + ใต้ 4H Bullish OB zone"
+    },
+    "take_profit": {
+      "tp1": {
+        "price": 5380.0,
+        "rr": "1:2",
+        "action": "Close 40%, SL to breakeven"
+      },
+      "tp2": {
+        "price": 5415.0,
+        "rr": "1:3",
+        "action": "Close 40%, trail SL to TP1"
+      },
+      "tp3": {
+        "price": 5510.0,
+        "rr": "1:5",
+        "action": "Close 20%, trail SL to TP2"
+      }
+    },
+    "rr_ratio": "1:3 to 1:5",
+    "position_size": {
+      "lots": 0.01,
+      "risk_amount": 30,
+      "sl_distance_pips": 40.0
+    },
+    "invalidation": "แท่งเทียน 15M ปิดต่ำกว่า 5,260 อย่างชัดเจน / RSI 4H ทำ Bearish Divergence ที่ Overbought >75 / ราคาหลุด 15M EMA200 (5,202)"
+  },
+  "risk_notes": [
+    "ISM Manufacturing PMI วันนี้ 15:00 UTC — ข้อมูลเศรษฐกิจสำคัญอาจทำให้ทองผันผวนแรง ห้ามเปิดสถานะใหม่ช่วง 14:30–15:30 UTC",
+    "RSI ใกล้ Overbought บน 1H (69.2) และ 4H (68.6) — มีโอกาส Pullback ก่อนไปต่อ ไม่ควรไล่ราคาที่ระดับปัจจุบัน (~5,334)",
+    "1H มีสัญญาณ Regular Bearish Divergence อ่อนๆ — ราคาทำ HH แต่ RSI ไม่ทำ HH ชัด → ลด urgency ให้รอ confirmation",
+    "ATR สูงทุก TF (Weekly 256, Daily 132, 4H 48) — ความผันผวนสูง SL ต้องกว้างขึ้น",
+    "Round Number $5,300 และ $5,400 — จุดที่มักเกิด Stop Hunt โดยเฉพาะช่วง London Open",
+    "London Open เป็นช่วง Highest Volatility สำหรับ XAUUSD — อาจเกิด Liquidity Sweep ที่ Asian Range Low ก่อนวิ่งขึ้น",
+    "COT: Managed Money Net Long ลดลงเล็กน้อย — ไม่อยู่ระดับ Extreme, ปลอดภัย",
+    "ถ้าราคาไม่ Pullback ลงมาถึง Entry Zone 5,300-5,310 → WAIT ไม่ไล่ราคา"
+  ],
+  "pre_trade_checklist": {
+    "regime_identified": true,
+    "no_news_30min": true,
+    "session_active": true,
+    "tf_aligned_3_plus": true,
+    "rr_minimum_met": true,
+    "pattern_validated": false,
+    "ob_fvg_marked": true,
+    "liquidity_noted": true,
+    "divergence_confirmed": false,
+    "macd_crosscheck": true,
+    "cot_etf_checked": true,
+    "macro_3_plus": true,
+    "scaling_plan_set": true,
+    "entry_confirmed_5m": false,
+    "position_size_calc": true,
+    "counter_trend_verified": null
+  },
+  "market_regime": {
+    "regime": "TRENDING",
+    "evidence": "EMA50 เหนือ EMA200 ชัดเจนทั้ง 4H (5,129>4,988), 1H (5,203>5,099), 15M (5,265>5,202) gap ขยายตัว | ราคาทำ HH+HL ต่อเนื่องตั้งแต่ต้น Feb 2026 (4,800→5,388) | ATR 4H 48.5 ไม่เกิน 2× ค่าเฉลี่ย | โครงสร้าง Impulse-Pullback-Impulse ชัดเจนบน 4H",
+    "trading_rules": "เทรดตามเทรนด์เท่านั้น (LONG only) | เข้าที่ Pullback ไปหา EMA50 หรือ Unmitigated OB | Hidden Div = best entry | R:R 1:3 ขยายไป 1:5+"
+  },
+  "multi_tf_alignment": [
+    {
+      "tf": "1W",
+      "trend_ema200": "Bullish",
+      "structure": "Major Uptrend, ATH Zone — ราคา 5,331 สูงกว่า EMA200 (~2,400) อย่างมาก",
+      "ob_fvg_zone": null,
+      "candle_pattern": "Bearish candle เล็ก (wick บน) แต่ context bullish",
+      "rsi_divergence": "RSI 75 ใกล้ OB ไม่มี Div ชัด",
+      "aligned": true
+    },
+    {
+      "tf": "1D",
+      "trend_ema200": "Bullish",
+      "structure": "HH+HL ต่อเนื่อง — ราคา 5,331 >> EMA200 4,113 >> EMA50 4,907",
+      "ob_fvg_zone": null,
+      "candle_pattern": "Strong bullish candles ล่าสุด",
+      "rsi_divergence": "RSI 62.27 neutral-bullish ไม่มี Div",
+      "aligned": true
+    },
+    {
+      "tf": "4H",
+      "trend_ema200": "Bullish",
+      "structure": "BOS ขึ้นล่าสุดผ่าน 5,300 — ราคา 5,333 > EMA50 5,129 > EMA200 4,988",
+      "ob_fvg_zone": "Bullish OB: 5,250–5,300",
+      "candle_pattern": "Strong bullish impulse candles",
+      "rsi_divergence": "RSI 68.63 ใกล้ OB ไม่มี Div ชัด",
+      "aligned": true
+    },
+    {
+      "tf": "1H",
+      "trend_ema200": "Bullish",
+      "structure": "BOS ขึ้น ตอนนี้อยู่ใน Pullback เบาๆ — ราคา 5,332 > EMA50 5,203 > EMA200 5,099",
+      "ob_fvg_zone": "Bullish OB: 5,200–5,230",
+      "candle_pattern": "แท่งเทียนขาขึ้นแรง ตามด้วย Pullback เล็กน้อย",
+      "rsi_divergence": "Possible Weak Regular Bearish Div (ราคา HH, RSI ไม่ HH ชัด) — 🟢 Weak",
+      "aligned": true
+    },
+    {
+      "tf": "15M",
+      "trend_ema200": "Bullish",
+      "structure": "Impulse ขึ้นแรง กำลัง Pullback — ราคา 5,333 > EMA50 5,265 > EMA200 5,202",
+      "ob_fvg_zone": "Bullish OB: 5,280–5,300",
+      "candle_pattern": "รอ Tier-1 Pattern ที่ Entry Zone",
+      "rsi_divergence": "RSI 58.67 neutral, MACD bearish crossover -4.17",
+      "aligned": true
+    },
+    {
+      "tf": "5M",
+      "trend_ema200": "Bullish",
+      "structure": "Consolidation หลัง Impulse — ราคา 5,334 > EMA200 5,242 ใกล้ EMA50 5,327",
+      "ob_fvg_zone": null,
+      "candle_pattern": "รอ Tier-1 Pattern ที่ Entry Zone",
+      "rsi_divergence": "RSI 48.57 neutral, MACD bearish -2.96 — ไม่มี Div ขณะนี้",
+      "aligned": true
+    }
+  ],
+  "smc": {
+    "order_blocks": [
+      {
+        "tf": "4H",
+        "type": "Bullish OB",
+        "price_zone": "5,250 - 5,300",
+        "mitigated": false,
+        "aligned_ema": false
+      },
+      {
+        "tf": "1H",
+        "type": "Bullish OB",
+        "price_zone": "5,200 - 5,230",
+        "mitigated": false,
+        "aligned_ema": true
+      }
+    ],
+    "fair_value_gaps": [
+      {
+        "tf": "4H",
+        "direction": "Bullish",
+        "price_zone": "5,300 - 5,350",
+        "filled": "Partial"
+      },
+      {
+        "tf": "1H",
+        "direction": "Bullish",
+        "price_zone": "5,280 - 5,320",
+        "filled": "No"
+      }
+    ],
+    "liquidity_zones": {
+      "buy_side_eqh": "5,388 (Recent ATH — Equal Highs 1-2 จุด)",
+      "sell_side_eql": "5,175 - 5,180 (Equal Lows บน 15M จาก Feb 27)",
+      "session_liquidity": "Asian Session Low ~5,303 / Asian High ~5,388",
+      "sweep_detected": "ยังไม่เกิด — รอดู London Open ว่าจะ Sweep Asian Low (~5,303) ก่อนวิ่งขึ้นหรือไม่"
+    },
+    "bos_choch_status": "BOS ขาขึ้นบน 4H — ราคา Close เหนือ Swing High ~5,300 อย่างชัดเจน ยืนยัน Bullish Continuation"
+  },
+  "candlestick_pattern": {
+    "dominant_pattern": "รอ Pattern — ยังไม่เกิดที่ Entry Zone",
+    "timeframe": "15M / 5M",
+    "tier": 1,
+    "location": "OB + Round Number $5,300",
+    "body_wick_ratio": "N/A — รอ Pattern เกิดขึ้น",
+    "volume_context": "Below avg (Volume ลดในช่วง Pullback — Healthy sign)",
+    "verdict": "Moderate",
+    "verdict_reason": "รอ Tier-1 Pattern (Hammer/Bullish Engulfing/Pin Bar) ที่ 5,300-5,310 zone พร้อม Volume confirmation ก่อนเข้า"
+  },
+  "divergence": {
+    "signals": [
+      {
+        "oscillator": "RSI(14)",
+        "tf": "1H",
+        "price_action": "Higher High (5,300 → 5,388)",
+        "oscillator_action": "RSI ~คงที่/ลดเล็กน้อย (70 → 69.2)",
+        "div_type": "Regular Bearish",
+        "grade": "Weak"
+      },
+      {
+        "oscillator": "MACD",
+        "tf": "15M",
+        "price_action": "Histogram -4.17 — Bearish crossover",
+        "oscillator_action": "Confirms short-term momentum slowdown",
+        "div_type": "No divergence — momentum slowing",
+        "grade": "Weak"
+      }
+    ],
+    "verdict": "Weak Regular Bearish Div บน 1H เท่านั้น — ใช้เป็น warning สำหรับ Pullback ไม่แรงพอกลับเทรนด์",
+    "alignment_check": "Aligns — สนับสนุนการรอ Pullback ก่อนเข้า LONG ไม่ขัดแย้งกับ bias"
+  },
+  "cot_sentiment": {
+    "cot_net_positioning": "Non-Commercial Net Long ~159,177 contracts (COMEX Gold as of Feb 24) → Normal — ไม่ Extreme",
+    "cot_weekly_change": "Open Interest ลดลง -11,732; Net Long ลดเล็กน้อย → Profit taking เล็กน้อยหลัง rally ปกติ",
+    "gold_etf_flows": "ปี 2025 Gold ETF Inflows สูงสุดเป็นประวัติการณ์ N.America $51bn ทั้งปี + Inflows ต่อเนื่อง → Supports LONG",
+    "us_real_yield_trend": "Falling → Tailwind — 10Y Yield ลดลงมาที่ 3.97% ต่ำสุดรอบ 4 เดือน Real Yield กดลง",
+    "central_bank_buying": "ธนาคารกลางซื้อทอง 863 ตันในปี 2025 คาดว่า 850 ตันในปี 2026 → Structural Support",
+    "confidence_adj": "+1.5⭐ — +0.5 COT normal supports LONG, +0.5 ETF inflows strong, +0.5 Real Yields falling"
+  },
+  "macro_correlation": {
+    "assets": [
+      { "name": "DXY", "direction": "↓", "supports_bias": true },
+      {
+        "name": "US10Y Real Yield (TIPS)",
+        "direction": "↓",
+        "supports_bias": true
+      },
+      { "name": "VIX", "direction": "↑", "supports_bias": true },
+      { "name": "USD/JPY", "direction": "↓", "supports_bias": true },
+      { "name": "Silver (XAGUSD)", "direction": "↑", "supports_bias": true }
+    ],
+    "aligned_count": "5/5",
+    "action": "Proceed"
+  },
+  "confluence_summary": {
+    "regime": "Trending (Bullish) — เทรดตามเทรนด์ เข้าที่ Pullback",
+    "ema": "ราคาอยู่เหนือ EMA50 และ EMA200 ทุก TF (6/6) — bullish alignment สมบูรณ์",
+    "smc": "Unmitigated Bullish OB บน 4H (5,250-5,300) และ 1H (5,200-5,230) + FVG 1H (5,280-5,320) ยังเปิดอยู่",
+    "rsi": "4H/1H ใกล้ Overbought (68-69) | Weak Bearish Div บน 1H สนับสนุนการรอ Pullback",
+    "macd": "4H/1H ยัง Bullish (histogram positive) | 15M/5M เริ่ม Bearish crossover ยืนยัน Pullback ระยะสั้น",
+    "pattern": "รอ Tier-1 Pattern (Hammer/Engulfing) ที่ Entry Zone 5,300-5,310",
+    "volume": "ลดลงระหว่าง Pullback — Healthy sign ในเทรนด์ขาขึ้น",
+    "cot": "Net Long ระดับปกติ + ETF Inflows แข็งแรง + Real Yields ลดลง — สนับสนุน LONG ทั้งหมด",
+    "macro": "5/5 aligned — DXY↓ US10Y↓ VIX↑ JPY↓ Silver↑ — สภาพแวดล้อมดีเยี่ยมสำหรับ Gold",
+    "session": "London Open — ช่วงที่ทองเคลื่อนไหวมากที่สุด อาจ Sweep Asian Low (~5,303) ก่อน Rally ขึ้น เป็นจุดเข้าที่ดี"
+  }
+}
